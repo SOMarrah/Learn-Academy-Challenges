@@ -1,0 +1,15 @@
+*{
+    text-align: center;
+}
+body{
+  background-color: salmon;
+}
+#square{
+  border: 20px solid tan;
+  width: 300px;
+  height: 140px;
+  margin: auto;
+}
+#text{
+  color: purple;
+}
