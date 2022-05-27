@@ -6,18 +6,36 @@ class Plate extends Component{
 
   render(){
     return(
-      <ul>
-      {this.props.adultMenu.map(value => {
+      <>
+      <table>
+        <tr>
+        <th>Food</th>
+        <th>Price</th>
+        </tr>
+        <tr>
+      {this.props.adultMenu.map((value, index) => {
         return(
-          <li>
+          <tr key={index}>
             <button onClick={ () => this.props.takeOrder(value)}>
               {value}
             </button>
-          </li>
+          </tr>
         )
-
       })}
-      </ul>
+      <td>
+      {this.props.prices.map(value => {
+        return(
+          <tr>
+            <button onClick={ () => this.propse.priceAdd(value)}>
+            {value} </button>
+          </tr>
+        )
+      })}
+      </td>
+      </tr>
+      </table>
+      </>
+
     )
   }
 }

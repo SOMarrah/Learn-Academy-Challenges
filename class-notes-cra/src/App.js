@@ -19,6 +19,8 @@ class App extends Component {
       adultMenu: ["collard greens", "steak", "fried okra", "andouille sausage"],
       kidsMenu: ["hot dogs","okra tots", "mac n cheese", "chicken nuggets", "sushi"],
       order: [],
+      price:[1, 2, 3, 4],
+      prices:0,
 
     }
   }
@@ -35,9 +37,17 @@ class App extends Component {
 
   }
   takeOrder = (item) => {
-    this.setState({order: [...this.state.order, item]})
+    this.setState({order: [...this.state.order, item]})// "..."- .push() - almost the same
   }
-
+  addPrices = (item) =>{
+    this.setState({prices: + 1})
+  }
+  //prices becomes = + current index value of price on each click
+  //price.indexOf()
+  handleMenu = () => {
+    this.takeOrder()
+    this.addPrices()
+  }
   //crate a method that will process somekind of input(usually from the user) and return to us a change in our state object
   //handle -> means go do this process
   render(){
@@ -61,14 +71,19 @@ class App extends Component {
       <h2>Adult Menu</h2>
         <Plate
           adultMenu= {this.state.adultMenu}
-          takeOrder={this.takeOrder}
+          takeOrder= {this.takeOrder}
+          prices= {this.state.price}
+          priceAdd= {this.addPrices}
         />
       <h2>Kid Menu</h2>
         <Plate
           adultMenu= {this.state.kidsMenu}
           takeOrder={this.takeOrder}
+          prices= {this.state.price}
+          priceAdd= {this.addPrices}
         />
       <h2>🍽 What is your order? 🍽</h2>
+      <p>{this.state.prices}</p>
         <ul>
         {this.state.order.map((value, index) =>{
           return <li key={index}>{value}
