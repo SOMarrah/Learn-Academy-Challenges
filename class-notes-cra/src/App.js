@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import FlashCard from './components/FlashCard'
 import Capitalize from './components/Capitalize'
+import Plate from './components/Plate'
 
 
 
@@ -15,6 +16,9 @@ class App extends Component {
       "state", "setState()", "constructor method", "dumb/pure/display component", "smart/impure/logic component", "React", "component", "DOM", "JSX", "render", "return", "class component", "component call", "kebob-case", "localhost:3000", "import", "export"],
       randNum: 0,
       name: "",
+      adultMenu: ["collard greens", "steak", "fried okra", "andouille sausage"],
+      kidsMenu: ["hot dogs","okra tots", "mac n cheese", "chicken nuggets", "sushi"],
+      order: [],
 
     }
   }
@@ -30,10 +34,13 @@ class App extends Component {
     this.setState({name: e.target.value})
 
   }
+  takeOrder = (item) => {
+    this.setState({order: [...this.state.order, item]})
+  }
+
   //crate a method that will process somekind of input(usually from the user) and return to us a change in our state object
   //handle -> means go do this process
   render(){
-    console.log(this.state.name);
     return(
       <>
 
@@ -50,7 +57,23 @@ class App extends Component {
         onChange={this.handleChange}
       />
       </div>
-
+      <h1>Charlie's BBQ!</h1>
+      <h2>Adult Menu</h2>
+        <Plate
+          adultMenu= {this.state.adultMenu}
+          takeOrder={this.takeOrder}
+        />
+      <h2>Kid Menu</h2>
+        <Plate
+          adultMenu= {this.state.kidsMenu}
+          takeOrder={this.takeOrder}
+        />
+      <h2>🍽 What is your order? 🍽</h2>
+        <ul>
+        {this.state.order.map((value, index) =>{
+          return <li key={index}>{value}
+        </li>})}
+        </ul>
       </>
 
     )
